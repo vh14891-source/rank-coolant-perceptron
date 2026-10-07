@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rack Coolant Perceptron</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<h1>Rack coolant perceptron</h1>
+<p class="sub">A single neuron learns when combined rack temperatures are unsafe. Type a temperature or move a slider to test it.</p>
+
+<section class="card status" id="status" aria-live="polite">
+<svg class="fan" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 11a1 1 0 100 2 1 1 0 000-2zm0-9c-2.8 0-3.5 3-2.2 5.2L12 11V2zm9 10c0-2.8-3-3.5-5.2-2.2L13 12h8zm-9 10c2.8 0 3.5-3 2.2-5.2L12 13v9zM3 12c0 2.8 3 3.5 5.2 2.2L11 12H3z"/></svg>
+<div><div class="big" id="verdict">Normal</div><small id="score"></small></div>
+</section>
+
+<section class="card">
+<h2>Sensor readings</h2>
+<div class="row"><label for="t0">Top</label><div><input id="t0" type="range" min="20" max="70" value="35"><div class="meter"><i id="m0"></i></div></div><input id="n0" type="number" min="20" max="70" step="1" aria-label="Temperature in °C"></div>
+<div class="row"><label for="t1">Middle</label><div><input id="t1" type="range" min="20" max="70" value="38"><div class="meter"><i id="m1"></i></div></div><input id="n1" type="number" min="20" max="70" step="1" aria-label="Temperature in °C"></div>
+<div class="row"><label for="t2">Bottom</label><div><input id="t2" type="range" min="20" max="70" value="32"><div class="meter"><i id="m2"></i></div></div><input id="n2" type="number" min="20" max="70" step="1" aria-label="Temperature in °C"></div>
+<code id="eq"></code>
+</section>
+
+<section class="card">
+<h2>Training</h2>
+<div class="stats">
+<div class="stat"><b id="sAcc">-</b><span>Accuracy</span></div>
+<div class="stat"><b id="sEp">-</b><span>Epochs to converge</span></div>
+<div class="stat"><b id="sW">-</b><span>Weights (top, mid, bottom)</span></div>
+<div class="stat"><b id="sB">-</b><span>Bias</span></div>
+</div>
+<div class="ctl">
+<label for="lim">Combined limit (°C)</label><input id="lim" type="number" value="120" min="60" max="200">
+<button id="train">Retrain model</button>
+</div>
+</section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
